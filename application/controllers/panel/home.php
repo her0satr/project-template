@@ -30,6 +30,8 @@ class home extends CI_Controller {
 			$result['message'] = 'Maaf, user anda tidak ditemukan';
 		} else if ($user['is_active'] == 0) {
 			$result['message'] = 'Maaf, user anda tidak aktif';
+		} else if ($user['passwd'] != EncriptPassword($_POST['passwd'])) {
+			$result['message'] = 'Maaf, password anda tidak sesuai';
 		} else if ($user['passwd'] == EncriptPassword($_POST['passwd'])) {
 			$result['success'] = true;
 			$result['menu'] = $this->User_model->get_menu();
